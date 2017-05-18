@@ -1,7 +1,24 @@
-<view class="page">
-    <view class="label-icon">
-        <view class="label-msg">我的验证码</view>
-    </view> 
 
-    
+<view class="page__hd" style="width:90%;">
+    <view class="classname">
+        <image class="label-icon" src="/../../Resources/logo.jpg" ></image>
+        <label class="label-msg">我的安全令</label>
+    </view>
+</view>
+<view class="page__bd page__bd_spacing">
+    <view class="weui-flex main ">
+        <view class="weui-flex__item center">
+            <view class="main-code">88888888</view>
+        </view>
+    </view>
+    <view class="weui-flex">
+        <view class="progress">
+            <progress percent="{{progress}}" stroke-width="1"/>
+        </view>
+    </view>
+    <view class="get_button">
+        <view class="">
+            <button type="primary" > 获取安全令 </button>
+        </view>
+    </view>
 </view>
