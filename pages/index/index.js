@@ -16,8 +16,22 @@ Page({
                 clearInterval(inter);
             }
             that.setData({
-                progress:that.data.progress + 10
+                progress:that.data.progress + 1
             });
         },1000);
+        wx.getStorage({
+          key: 'skey',
+          success: function (res) {
+            console.log(res.data)
+          }
+        })
+        wx.checkSession({
+          success: function(res) 
+          {
+            console.log(res)
+          },
+          fail: function(res) {},
+          complete: function(res) {},
+        })
     }
 })
