@@ -1,0 +1,50 @@
+/* login.wxss */
+.weui-toast {
+    position: fixed;
+    z-index: 5000;
+    width: 7.6em;
+    height: 7.6em;
+    line-height: 7.6rem;
+    top: 180px;
+    left: 50%;
+    margin-left: -3.8em;
+    background: rgba(17, 17, 17, 0.7);
+    text-align: center;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+.weui-icon_toast {
+    margin: 22px 0 0;
+    display: block;
+}
+.weui-icon-success-no-circle {
+    font-size: 23px;
+    color: #09BB07;
+}
+[class^="weui-icon-"], [class*=" weui-icon-"] {
+    display: inline-block;
+    vertical-align: middle;
+    font: normal normal normal 14px/1 "weui";
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+.weui-icon_toast.weui-icon-success-no-circle:before {
+    color: #FFFFFF;
+    font-size: 55px;
+}
+
+[class^="weui-icon_"]:before, [class*=" weui-icon_"]:before {
+    margin: 0;
+}
+
+.weui-loading {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-animation: weuiLoading 1s steps(12, end) infinite;
+    animation: weuiLoading 1s steps(12, end) infinite;
+    background: transparent url('http://13c.pub/1.svg') no-repeat;
+    background-size: 100%;
+}
