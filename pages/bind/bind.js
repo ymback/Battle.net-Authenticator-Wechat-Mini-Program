@@ -79,8 +79,12 @@ Page({
     })
   },
   register:function (e) {
+      wx.showToast({
+          title: '跳转',
+          icon: 'loading'
+      })
       wx.redirectTo({
-          url: '/pages/'
+          url: '/pages/register/register'
       })
   },
   formSubmit:function(e){

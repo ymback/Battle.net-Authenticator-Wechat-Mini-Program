@@ -1,0 +1,60 @@
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="title">
+    注册账号
+  </view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <label class="weui-label">账号</label>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" type="text" pattern="[0-9]*" placeholder="请输入需要绑定的账号" name="username" confirm-type='done'/>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <label class="weui-label">密码</label>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" type="password" pattern="[0-9]*" placeholder="输入密码" name='password' confirm-type='done'/>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <label class="weui-label">重复密码</label>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" type="password" pattern="[0-9]*" placeholder="重复密码" name='passwordToo' confirm-type='done'/>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <label class="weui-label">邮箱地址</label>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" type="text" pattern="[0-9]*" placeholder="邮箱地址" name='email' confirm-type='done'/>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <label class="weui-label">密保问题</label>
+    </view>
+    <view class="weui-cell__bd">
+              <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                <view class="picker">
+                  {{array[index]}}
+                </view>
+              </picker>
+        </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <label class="weui-label">密保答案</label>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" type="text" pattern="[0-9]*" placeholder="密保答案" name='answer' confirm-type='done'/>
+    </view>
+</view>
+  <view class="btn-area">
+    <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"disabled="{{disabled}}" bindtap="click" form-type="submit" id="bind1">注册新账号</button>
+  </view>
+</form>
