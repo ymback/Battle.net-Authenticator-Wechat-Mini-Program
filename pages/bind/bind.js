@@ -11,6 +11,7 @@ Page({
     disabled: false,
     plain: false,
     loading: false,
+    token:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -84,13 +85,7 @@ Page({
   },
   formSubmit:function(e){
     let url = "http://myauth.zuzhanghao.com/api/wechat/bindAccount ";
-    let token = "";
-    wx.getStorage({
-        key: 'skey',
-        success: function(res) {
-            token = res.data
-        }
-    })
+    let token = wx.getStorageSync('skey')
     for (var key in e.detail.value)
     {
       if (e.detail.value[key] == '')

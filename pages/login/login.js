@@ -33,10 +33,10 @@ Page({
                   method: 'post',
                   dataType: 'json',
                   success: function (res) {
-                    wx.setStorage({
-                        key: "skey",
-                        data: res.data.data.token_wechat_session_v1
-                    })
+                    wx.setStorageSync(
+                        "skey",
+                        res.data.data.token_wechat_session_v1
+                    )
                     if (res.data.code == 1) {
                       wx.redirectTo({
                         url: '/pages/index/index',
