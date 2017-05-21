@@ -21,46 +21,58 @@ Page({
   onReady: function () {
     wx.setNavigationBarTitle({
       title: '登录授权中...'
-    })
-          wx.login({
-            success: function (res) {
-              if (res.code) {
-                let url = "http://myauth.zuzhanghao.com/api/wechat/getSessionToken"
-                wx.request({
-                  url: url,
-                  data: {code:res.code},
-                  header: {},
-                  method: 'post',
-                  dataType: 'json',
-                  success: function (res) {
-                    wx.setStorageSync(
-                        "skey",
-                        res.data.data.token_wechat_session_v1
-                    )
-                    if (res.data.code == 1) {
-                      wx.redirectTo({
-                        url: '/pages/index/index',
-                        success: function (res) { },
-                        fail: function (res) { },
-                        complete: function (res) { },
-                      })
-                    }
-                    else if (res.data.code == 428)
-                    {
-                      wx.redirectTo({
-                        url: '/pages/bind/bind',
-                        success: function (res) { },
-                        fail: function (res) { },
-                        complete: function (res) { },
-                      })
-                    }
+    });
+    wx.checkSession({
+      success: function () {
+        console.log("checkSessionSuccess")
+        wx.redirectTo({
+          url: '/pages/index/index',
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
+      },
+      fail: function () {
+        wx.login({
+          success: function (res) {
+            if (res.code) {
+              let url = "http://myauth.zuzhanghao.com/api/wechat/getSessionToken"
+              wx.request({
+                url: url,
+                data: { code: res.code },
+                header: {},
+                method: 'post',
+                dataType: 'json',
+                success: function (res) {
+                  wx.setStorageSync(
+                    "skey",
+                    res.data.data.token_wechat_session_v1
+                  )
+                  if (res.data.code == 200) {
+                    wx.redirectTo({
+                      url: '/pages/index/index',
+                      success: function (res) { },
+                      fail: function (res) { },
+                      complete: function (res) { },
+                    })
                   }
-                })
-              } else {
-                console.log('用户信息获取失败' + res.errMsg)
-              }
+                  else if (res.data.code == 428) {
+                    wx.redirectTo({
+                      url: '/pages/bind/bind',
+                      success: function (res) { },
+                      fail: function (res) { },
+                      complete: function (res) { },
+                    })
+                  }
+                }
+              })
+            } else {
+              console.log('用户信息获取失败' + res.errMsg)
             }
-          })
+          }
+        })
+      }
+    });
   },
 
   /**
