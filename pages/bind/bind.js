@@ -117,7 +117,15 @@ Page({
           dataType: '',
           success: function(res)
           {
-              console.log(res)
+              if(res.date.code == 200)
+              {
+                  wx.redirectTo({
+                      url: '/pages/index/index',
+                      success: function (res) { },
+                      fail: function (res) { },
+                      complete: function (res) { },
+                  })
+              }
           }
       })
   }

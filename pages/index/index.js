@@ -13,10 +13,12 @@ Page({
         var that = this
         var inter = setInterval(function(){
             if (that.data.progress >= 100) {
-                clearInterval(inter);
+                that.setData({
+                    progress:0
+                });
             }
             that.setData({
-                progress:that.data.progress + 1
+                progress:that.data.progress + 10
             });
         },1000);
         wx.getStorage({

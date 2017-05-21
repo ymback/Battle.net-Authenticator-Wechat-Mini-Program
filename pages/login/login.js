@@ -37,7 +37,7 @@ Page({
                         "skey",
                         res.data.data.token_wechat_session_v1
                     )
-                    if (res.data.code == 1) {
+                    if (res.data.code == 200) {
                       wx.redirectTo({
                         url: '/pages/index/index',
                         success: function (res) { },
@@ -52,6 +52,11 @@ Page({
                         success: function (res) { },
                         fail: function (res) { },
                         complete: function (res) { },
+                      })
+                    }else{
+                      wx.showToast({
+                          title: res.data.message,
+                          icon: 'loading'
                       })
                     }
                   }

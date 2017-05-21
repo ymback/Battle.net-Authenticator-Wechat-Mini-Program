@@ -154,8 +154,8 @@ Page({
             })
             return false
         }
-
-        if (e.detail.value.password != e.detail.value.passwordToo)
+        let pwdReg = /^[A-Za-z0-9]{8,16}$/;
+        if (e.detail.value.password != e.detail.value.passwordToo && pwdReg.test(e.detail.value.password))
         {
             wx.showToast({
                 title: '错误,两次输入的密码不一致',
@@ -177,7 +177,6 @@ Page({
         json['answer'] = e.detail.value.answer;
         json['email'] = e.detail.value.email;
         json['token_wechat_session_v1'] = token;
-
         wx.request({
             url: url,
             data: json,
@@ -186,7 +185,20 @@ Page({
             dataType: '',
             success: function(res)
             {
-                console.log(res)
+                if(res.data.code == 200)
+                {
+                    wx.redirectTo({
+                        url: '/pages/index/index',
+                        success: function (res) { },
+                        fail: function (res) { },
+                        complete: function (res) { },
+                    })
+                }else{
+                    wx.showToast({
+                        title: res.data.message,
+                        icon: 'loading'
+                    })
+                }
             }
         })
     }
