@@ -25,16 +25,16 @@ Page({
           wx.login({
             success: function (res) {
               if (res.code) {
-                let url = "http://127.0.0.1:1024/index.php"
-                console.log(url)
+                let url = "http://myauth.zuzhanghao.com/api/wechat/getSessionToken"
                 wx.request({
                   url: url,
-                  data: {code:res.code,tag:'code'},
+                  data: {code:res.code},
                   header: {},
-                  method: 'get',
+                  method: 'post',
                   dataType: 'json',
                   success: function (res) {
-                    if (res.data.status == 1) {
+                    console.log(res)
+                    if (res.data.code == 1) {
                       wx.setStorage({
                         key: "skey",
                         data: res.data.data
@@ -45,9 +45,14 @@ Page({
                         fail: function (res) { },
                         complete: function (res) { },
                       })
-                    } else if(res.data.status == 0)
+                    } else if (res.data.code == 428)
                     {
-                      //跳转注册or绑定页面
+                      wx.redirectTo({
+                        url: '/pages/bind/bind',
+                        success: function (res) { },
+                        fail: function (res) { },
+                        complete: function (res) { },
+                      })
                     }
                   }
                 })

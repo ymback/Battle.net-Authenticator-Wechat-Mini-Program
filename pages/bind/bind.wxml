@@ -1,0 +1,28 @@
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="title">
+    绑定账号
+  </view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <label class="weui-label">账号</label>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" type="text" pattern="[0-9]*" placeholder="请输入需要绑定的账号" name="username" confirm-type='done'/>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <label class="weui-label">密码</label>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" type="password" pattern="[0-9]*" placeholder="输入密码" name='password' confirm-type='done'/>
+    </view>
+</view>
+  <view class="btn-area">
+    <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"disabled="{{disabled}}" bindtap="click" form-type="submit" id="bind1">点击绑定</button>
+  </view>
+
+    <view class="btn-area">
+    <button type='warn' size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"disabled="{{disabled}}" bindtap="register">注册新账号</button>
+  </view>
+</form>
