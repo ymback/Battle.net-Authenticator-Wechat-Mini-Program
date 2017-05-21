@@ -84,7 +84,13 @@ Page({
   },
   formSubmit:function(e){
     let url = "http://myauth.zuzhanghao.com/api/wechat/bindAccount ";
-    console.log(url)
+    let token = "";
+    wx.getStorage({
+        key: 'skey',
+        success: function(res) {
+            token = res.data
+        }
+    })
     for (var key in e.detail.value)
     {
       if (e.detail.value[key] == '')
@@ -104,7 +110,8 @@ Page({
           url: url,
           data: {
               username: e.detail.value.username,
-              password: e.detail.value.password
+              password: e.detail.value.password,
+              token_wechat_session_v1:token
           },
           header: {},
           method: 'post',
@@ -112,9 +119,7 @@ Page({
           success: function(res)
           {
               console.log(res)
-          },
-          fail: function(res) {},
-          complete: function(res) {},
+          }
       })
   }
 })

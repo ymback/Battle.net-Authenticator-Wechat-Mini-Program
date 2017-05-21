@@ -33,19 +33,19 @@ Page({
                   method: 'post',
                   dataType: 'json',
                   success: function (res) {
-                    console.log(res)
-                    if (res.data.code == 1) {
-                      wx.setStorage({
+                    wx.setStorage({
                         key: "skey",
-                        data: res.data.data
-                      })
+                        data: res.data.data.token_wechat_session_v1
+                    })
+                    if (res.data.code == 1) {
                       wx.redirectTo({
                         url: '/pages/index/index',
                         success: function (res) { },
                         fail: function (res) { },
                         complete: function (res) { },
                       })
-                    } else if (res.data.code == 428)
+                    }
+                    else if (res.data.code == 428)
                     {
                       wx.redirectTo({
                         url: '/pages/bind/bind',

@@ -23,6 +23,6 @@
   </view>
 
     <view class="btn-area">
-    <button type='warn' size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"disabled="{{disabled}}" bindtap="register">注册新账号</button>
+    <button type='warn' bindtap="register">注册新账号</button>
   </view>
 </form>
