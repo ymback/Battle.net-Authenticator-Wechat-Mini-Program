@@ -5,8 +5,8 @@
     "pages/logs/logs",
     "pages/bind/bind",
     "pages/register/register",
-    "pages/auth/addAuthByServer/addAuthByServer"
-
+    "pages/auth/addAuthByServer/addAuthByServer",
+    "pages/auth/addAuthByRestore/addAuthByRestore"
   ],
   "window": {
     "backgroundTextStyle": "light",
