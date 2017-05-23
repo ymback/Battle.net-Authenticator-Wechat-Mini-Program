@@ -1,0 +1,32 @@
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="weui-cell">
+    <view class="weui-cell__hd">
+      <label class="weui-label">安全令名称</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" type="text" pattern="[0-9]*" placeholder="请输入安全令名称" name="username" confirm-type='done' />
+    </view>
+  </view>
+  <view class="weui-cell">
+    <view class="weui-cell__hd">
+      <label class="weui-label">请选择安全令地区 </label>
+    </view>
+    <view class="weui-cell__bd">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="weui-cell">
+    <view class="btn-area">
+      <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="click" form-type="submit" id="bind1">添加安全令</button>
+    </view>
+  </view>
+</form>
+<view class="weui-cell">
+  <view class="btn-area">
+    <button type="primary" bindtap="goToAddByRestore" id="bind2">通过10位还原码还原安全令</button>
+  </view>
+</view>
