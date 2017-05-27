@@ -1,9 +1,3 @@
-<view class="page__hd" style="width:90%;">
-    <view class="classname">
-        <image class="label-icon" src="/../../Resources/logo.jpg" ></image>
-        <label class="label-msg">我的安全令</label>
-    </view>
-</view>
 <view class="page__bd page__bd_spacing">
     <view class="weui-flex main ">
         <view class="weui-flex__item center">
@@ -16,7 +10,7 @@
         </view>
     </view>
     <view class="get_button">
-        <view class="">
+        <view class="refresh">
             <button type="primary" bindtap="doSync"> 刷新安全令 </button>
         </view>
     </view>

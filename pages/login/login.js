@@ -1,4 +1,5 @@
 // login.js
+var app = getApp()
 Page({
 
   /**
@@ -12,27 +13,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '玻璃渣游戏安全令'
+    })
     var that = this
     wx.checkSession({
       success: function () {
-        wx.setNavigationBarTitle({
-          title: '拉取安全令信息中...'
-        })
         console.log("checkSession.success")
         that.getAuthCount()
       },
       fail: function () {
-        wx.setNavigationBarTitle({
-          title: '授权登录中...'
-        })
         console.log("checkSession.fail")
         that.doLogin()
       }
     })
   },
   getAuthCount: function () {
+    wx.showLoading({
+      title: '拉取安全令信息中',
+      icon: 'loading',
+      mask: true
+    });
     var that = this
-    let url = "http://myauth.zuzhanghao.com/api/wechat/authCount"
+    let url = app.apiUrl.authCount
     let token = wx.getStorageSync('skey')
     wx.request({
       url: url, data: {
@@ -60,17 +63,20 @@ Page({
         }
       },
       fail: function () {
-        wx.showToast({
-          title: '拉取安全令信息失败，请返回重试',
-        })
+        that.doLogin();
       }
     })
   },
   doLogin: function () {
+    wx.showLoading({
+      title: '拉取登录信息中',
+      icon: 'loading',
+      mask : true
+    });
     wx.login({
       success: function (res) {
         if (res.code) {
-          let url = "http://myauth.zuzhanghao.com/api/wechat/getSessionToken"
+          let url = app.apiUrl.getSessionToken
           wx.request({
             url: url,
             data: { code: res.code },

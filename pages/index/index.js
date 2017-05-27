@@ -14,7 +14,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '默认安全令'
     })
-
     var that = this;
     wx.getStorage({
       key: 'skey',
@@ -22,6 +21,7 @@ Page({
         console.log(res.data)
       }
     })
+    console.log(app.apiUrl.authDynamicCode);
     wx.checkSession({
       success: function (res) {
         console.log(res)
@@ -53,7 +53,7 @@ Page({
       })
     }
     var that = this;
-    let url = "http://myauth.zuzhanghao.com/api/wechat/authDynamicCode";
+    let url = app.apiUrl.authDynamicCode;
     let token = wx.getStorageSync('skey')
     wx.request({
       url: url,
@@ -92,7 +92,7 @@ Page({
   },
   oneButtonAuthLoad: function () {
     var that = this;
-    let url = "http://myauth.zuzhanghao.com/api/wechat/getOneButtonAuthRequestInfo";
+    let url = app.apiUrl.getOneButtonAuthRequestInfo
     let token = wx.getStorageSync('skey')
     wx.request({
       url: url,
@@ -147,7 +147,7 @@ Page({
     console.log(jsondata.requestId);
     console.log(jsondata.time);
     var that = this;
-    let url = "http://myauth.zuzhanghao.com/api/wechat/commitOneKeyButtonAuthResponse";
+    let url = app.apiUrl.commitOneKeyButtonAuthResponse
     let token = wx.getStorageSync('skey')
     wx.request({
       url: url,

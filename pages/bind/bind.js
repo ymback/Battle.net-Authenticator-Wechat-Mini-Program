@@ -1,4 +1,5 @@
 // bind.js
+var app = getApp();
 Page({
 
   /**
@@ -17,7 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.setNavigationBarTitle({
+      title: '绑定账号'
+    })
   },
 
   /**
@@ -88,7 +91,7 @@ Page({
       })
   },
   formSubmit:function(e){
-    let url = "http://myauth.zuzhanghao.com/api/wechat/bindAccount ";
+    let url = app.apiUrl.bindAccount;
     let token = wx.getStorageSync('skey')
     for (var key in e.detail.value)
     {
@@ -117,7 +120,7 @@ Page({
           dataType: '',
           success: function(res)
           {
-              if(res.date.code == 200)
+              if(res.data.code == 200)
               {
                   wx.redirectTo({
                       url: '/pages/index/index',
