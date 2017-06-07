@@ -29,7 +29,7 @@ Page({
     }
     var x = (screenWidth - ((screenWidth / 750) * 150)) / 2;
     var y = (screenWidth - ((screenWidth / 750) * 150)) / 2;
-    var r = ((screenWidth / 750) * 270);
+    var r = ((screenWidth / 750) * 260);
     var cxt_arc = wx.createCanvasContext('canvasArc');//创建并返回绘图上下文context对象。
 
 

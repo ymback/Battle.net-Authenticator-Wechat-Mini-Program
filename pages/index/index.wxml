@@ -12,17 +12,19 @@
           <button class="refresh" class="weui-btn mini-btn" bindtap="doSync" type="primary" size="mini" disabled="{{disabled}}" loading="{{loading}}">{{refreshCodeButtonString}}</button>
         </view>
       </view>
-      <view class="get_button page__bd_spacing">
-        <view class="weui-btn-area">
-          <button type="default" bindtap="seeAuthDetail" disabled="{{disabled}}">查看安全令详情</button>
-        </view>
-        <view class="{{addAuthViewClass}}">
-          <button class="weui-btn" type="default" bindtap="addMoreAuth" disabled="{{disabled}}">添加安全令</button>
-        </view>
-      </view>
     </view>
-    <view class="weui-footer" style="margin-top:48rpx;">
-      <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    <view class="weui-msg__extra-area">
+      <view class="weui-footer">
+        <view class="get_button page__bd_spacing">
+          <view class="{{addAuthViewClass}}">
+            <button class="weui-btn" type="default" bindtap="addMoreAuth" disabled="{{disabled}}">添加安全令</button>
+          </view>
+          <view class="weui-btn-area" style="margin-bottom:48rpx;">
+            <button type="default" bindtap="seeAuthDetail" disabled="{{disabled}}">查看安全令详情</button>
+          </view>
+        </view>
+        <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+      </view>
     </view>
   </scroll-view>
 </view>
