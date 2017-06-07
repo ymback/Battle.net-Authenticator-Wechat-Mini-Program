@@ -1,17 +1,28 @@
-<view class="page__bd page__bd_spacing">
-    <view class="weui-flex main ">
-        <view class="weui-flex__item center">
-            <view class="main-code">{{authCode}}</view>
+<view class="page {{pageBackgroundClarrArray[pageBackgroundClassIndex]}}">
+  <scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+    <view class="page__bd">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+      <view class="top-view">
+        <image class="code-background"></image>
+        <view class="canvas-parent">
+          <canvas class="circle" canvas-id="canvasArc"> </canvas>
         </view>
-    </view>
-    <view class="weui-flex">
-        <view class="progress">
-            <progress percent="{{progress}}" stroke-width="1"/>
+        <view class="weui-flex__item center main ">
+          <view class="main-code">{{authCode}}</view>
+          <button class="refresh" class="weui-btn mini-btn" bindtap="doSync" type="primary" size="mini" disabled="{{disabled}}" loading="{{loading}}">{{refreshCodeButtonString}}</button>
         </view>
-    </view>
-    <view class="get_button">
-        <view class="refresh">
-            <button type="primary" bindtap="doSync"> 刷新安全令 </button>
+      </view>
+      <view class="get_button page__bd_spacing">
+        <view class="weui-btn-area">
+          <button type="default" bindtap="seeAuthDetail" disabled="{{disabled}}">查看安全令详情</button>
         </view>
+        <view class="{{addAuthViewClass}}">
+          <button class="weui-btn" type="default" bindtap="addMoreAuth" disabled="{{disabled}}">添加安全令</button>
+        </view>
+      </view>
     </view>
+    <view class="weui-footer" style="margin-top:48rpx;">
+      <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    </view>
+  </scroll-view>
 </view>

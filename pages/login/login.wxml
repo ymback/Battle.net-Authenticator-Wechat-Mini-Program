@@ -1,7 +1,18 @@
-<view class="page">
+<scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+  <view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+    <view class="page__hd">
+      <image class="logo-image loginLogoSizeClass"></image>
+      <view class="page__title color-white-with-center">欢迎使用</view>
+      <view class="page__title color-white-with-center">玻璃渣游戏安全令</view>
+    </view>
     <view class="weui-msg__extra-area">
       <view class="weui-footer">
+        <view class="{{addAuthViewClass}}">
+          <button class="weui-btn" type="primary" bindtap="doLogin" disabled="{{disabled}}" loading="{{loading}}">{{reLoginButtonString}}</button>
+        </view>
         <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
       </view>
     </view>
-</view>
+  </view>
+</scroll-view>

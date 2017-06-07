@@ -1,0 +1,8 @@
+@import "../bind/bind.wxss";
+
+.transparent {
+  background-color: transparent;
+}
+.page__bd{
+  padding-bottom:20rpx; 
+}

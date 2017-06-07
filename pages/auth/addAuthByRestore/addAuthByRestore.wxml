@@ -1,2 +1,97 @@
-<!--addAuthByRestore.wxml-->
-<text>addAuthByRestore.wxml</text>
+<scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+  <view>
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+    <view class="page__hd">
+      <image class="logo-image"></image>
+      <view class="weui-article">
+        您可以在本页面通过我们的服务器还原一枚您已有的玻璃渣安全令，输入安全令名称、序列号、与序列号匹配的10位还原码，即可还原该安全令。
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="weui-cells weui-cells_after-title input-area">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">安全令名称</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder-class="placeholder-class" type="text" maxlength="12" pattern="^\S{1,12}$" placeholder="请输入安全令名称" name="authname" confirm-type='next' />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">序列号</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-input inline">
+              <picker class="left-float" bindchange="regionPickerChange" value="{{regionIndex}}" range="{{regionPickerArray}}">
+                <view class="picker inline"> {{regionPickerArray[regionIndex]}} </view>
+              </picker>
+              <view class="">
+                <text class="weui-input inline margin-left-10 margin-right-10 code-divider left-float" style="margin-left:30rpx;">-</text>
+                <input class="weui-input inline code-input margin-left-10 margin-right-10 left-float" maxlength="4" placeholder-class="placeholder-class placeholder-class-center" type="number" pattern="^[0,9]{4}$" placeholder="1-4" name="authcodeA1" confirm-type='next'
+                  bindinput="codeA1InputBinder" focus="{{authCodeFocusArray[0].focus}}" />
+                <text class="weui-input inline margin-left-10 margin-right-10 left-float">-</text>
+                <input class="weui-input inline code-input margin-left-10 margin-right-10 left-float" maxlength="4" placeholder-class="placeholder-class placeholder-class-center" type="number" pattern="^[0,9]{4}$" placeholder="5-8" name="authcodeB2" confirm-type='next'
+                  focus="{{authCodeFocusArray[1].focus}}" bindinput="codeB2InputBinder" />
+                <text class="weui-input inline margin-left-10 margin-right-10 left-float">-</text>
+                <input class="weui-input inline code-input margin-left-10 left-float" placeholder-class="placeholder-class placeholder-class-center" type="number" maxlength="4" pattern="^[0,9]{4}$" placeholder="9-12" name="authcodeC3" confirm-type='next' focus="{{authCodeFocusArray[2].focus}}"
+                  bindinput="codeC3InputBinder" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">还原码</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder-class="placeholder-class" type="text" maxlength="10" pattern="^[A-z0-9]{10}$" placeholder="请输入10位还原码" name="restorecode" confirm-type='done' />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">安全令图片</view>
+          </view>
+          <view class="weui-cell__bd">
+            <radio checked="{{authPicArray[0].checked}}" bindtap="wowRadioClick">
+              <view class="weui-input radio-background radio-wow"> </view>
+            </radio>
+            <radio checked="{{authPicArray[1].checked}}" bindtap="scRadioClick">
+              <view class="weui-input radio-background  radio-sc"> </view>
+            </radio>
+            <radio checked="{{authPicArray[2].checked}}" bindtap="d3RadioClick">
+              <view class="weui-input radio-background-last radio-d3"> </view>
+            </radio>
+            <radio checked="{{authPicArray[3].checked}}" bindtap="hsRadioClick">
+              <view class="weui-input radio-background radio-hs"> </view>
+            </radio>
+            <radio checked="{{authPicArray[4].checked}}" bindtap="shRadioClick">
+              <view class="weui-input radio-background radio-sh"> </view>
+            </radio>
+            <radio checked="{{authPicArray[5].checked}}" bindtap="owRadioClick">
+              <view class="weui-input radio-background-last radio-ow"> </view>
+            </radio>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_switch">
+          <view class="weui-cell__bd">设置为默认安全令</view>
+          <view class="weui-cell__ft">
+            <switch bindchange="defaultAuthSwitchListener" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-btn-area">
+        <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" form-type="submit" id="bind1">{{addAuthButtonString}}</button>
+      </view>
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="default" bindtap="addByServer" disabled="{{disabled}}">通过服务器申请新的安全令</button>
+      </view>
+    </form>
+    <view class="weui-footer" style="margin-top:48rpx;">
+      <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    </view>
+  </view>
+</scroll-view>

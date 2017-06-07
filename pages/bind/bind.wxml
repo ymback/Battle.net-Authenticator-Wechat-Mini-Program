@@ -1,37 +1,47 @@
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">关于绑定</view>
-    <view class="weui-article">
-      <view class="weui-article__section">
-        <view class="weui-article__p">
-          如果你已经有了玻璃渣游戏安全令在线版的账号，请绑定账号到微信小程序，即可直接读取账号中的安全令数据，小程序中的所有操作均直接同步到线上。
+<scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+  <view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+    <view class="page__hd">
+      <image class="logo-image"></image>
+      <view class="page__title">关于绑定</view>
+      <view class="weui-article">
+        如果你已经有了玻璃渣游戏安全令在线版的账号，请绑定账号到微信小程序，即可直接读取账号中的安全令数据，小程序中的所有操作均同步到网页端。
+      </view>
+    </view>
+    <view class="page__bd">
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="weui-cells weui-cells_after-title input-area">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">账号</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="placeholder-class" type="text" pattern="[0-9]*" placeholder="请输入需要绑定的账号" name="username" confirm-type='next' />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">密码</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="placeholder-class" type="password" pattern="[0-9]*" placeholder="请输入密码" name="password" confirm-type='done' />
+            </view>
+          </view>
         </view>
+        <view class="comfirm-area">
+          <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" form-type="submit" id="bind1">{{bindButtonString}}</button>
+          </view>
+          <view class="weui-btn-area">
+            <button class="weui-btn" type="default" bindtap="register" disabled="{{disabled}}">注册新账号</button>
+          </view>
+        </view>
+      </form>
+    </view>
+    <view class="weui-msg__extra-area">
+      <view class="weui-footer">
+        <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
       </view>
     </view>
   </view>
-  <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class="weui-cell">
-      <view class="weui-cell__hd">
-        <label class="weui-label">账号</label>
-      </view>
-      <view class="weui-cell__bd">
-        <input class="weui-input" type="text" pattern="[0-9]*" placeholder="请输入需要绑定的账号" name="username" confirm-type='done' />
-      </view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__hd">
-        <label class="weui-label">密码</label>
-      </view>
-      <view class="weui-cell__bd">
-        <input class="weui-input" type="password" pattern="[0-9]*" placeholder="输入密码" name='password' confirm-type='done' />
-      </view>
-    </view>
-    <view class="btn-area">
-      <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="click" form-type="submit" id="bind1">点击绑定</button>
-    </view>
-
-    <view class="btn-area">
-      <button type='warn' bindtap="register">注册新账号</button>
-    </view>
-  </form>
-</view>
+</scroll-view>

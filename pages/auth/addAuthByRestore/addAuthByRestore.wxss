@@ -1,1 +1,35 @@
-/* addAuthByRestore.wxss */
+@import "../addAuthByServer/addAuthByServer.wxss";
+
+.inline {
+  display: inline;
+}
+
+.picker {
+  width: 20rpx;
+}
+
+.right-float {
+  float: right;
+}
+
+.left-float {
+  float: left;
+}
+
+.code-input {
+  width: 90rpx;
+  text-align: center;
+}
+
+.margin-left-10 {
+  margin-left: 10rpx;
+}
+
+.margin-right-10 {
+  margin-right: 10rpx;
+}
+
+.placeholder-class-center {
+  text-align: center;
+  vertical-align: middle;
+}

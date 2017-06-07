@@ -1,60 +1,81 @@
-<form bindsubmit="formSubmit" bindreset="formReset">
-  <view class="title">
-    注册账号
-  </view>
-<view class="weui-cell">
-    <view class="weui-cell__hd">
-        <label class="weui-label">账号</label>
+<scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+  <view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+    <view class="page__hd">
+      <image class="logo-image"></image>
+      <view class="page__title">注册账号</view>
+      <view class="weui-article">
+        微信小程序端注册的账号在网页端同样可以使用，且所有数据均互相同步，方便手机没电时继续使用。
+      </view>
     </view>
-    <view class="weui-cell__bd">
-        <input class="weui-input" type="text" pattern="[0-9]*" placeholder="请输入需要绑定的账号" name="username" confirm-type='done'/>
-    </view>
-</view>
-<view class="weui-cell">
-    <view class="weui-cell__hd">
-        <label class="weui-label">密码</label>
-    </view>
-    <view class="weui-cell__bd">
-        <input class="weui-input" type="password" pattern="[0-9]*" placeholder="输入密码" name='password' confirm-type='done'/>
-    </view>
-</view>
-<view class="weui-cell">
-    <view class="weui-cell__hd">
-        <label class="weui-label">重复密码</label>
-    </view>
-    <view class="weui-cell__bd">
-        <input class="weui-input" type="password" pattern="[0-9]*" placeholder="重复密码" name='passwordToo' confirm-type='done'/>
-    </view>
-</view>
-<view class="weui-cell">
-    <view class="weui-cell__hd">
-        <label class="weui-label">邮箱地址</label>
-    </view>
-    <view class="weui-cell__bd">
-        <input class="weui-input" type="text" pattern="[0-9]*" placeholder="邮箱地址" name='email' confirm-type='done'/>
-    </view>
-</view>
-<view class="weui-cell">
-    <view class="weui-cell__hd">
-        <label class="weui-label">密保问题</label>
-    </view>
-    <view class="weui-cell__bd">
+    <view class="page__bd">
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="weui-cells weui-cells_after-title input-area">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <label class="weui-label">账号</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="placeholder-class" type="text" maxlength="32" pattern="^[\u4e00-\u9fa5A-z0-9_]{1,32}$" placeholder="请输入账号，可以使用字母和中文" name="username" confirm-type='next' />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <label class="weui-label">密码</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="placeholder-class" type="password" maxlength="16" pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*).{8,16}$" placeholder="请输入密码，必须包含字母和数字" name='password' confirm-type='next' />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <label class="weui-label">密码确认</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="placeholder-class" type="password" maxlength="16" pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*).{8,16}$" placeholder="请再次输入密码" name='passwordToo' confirm-type='next' />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <label class="weui-label">邮箱地址</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="placeholder-class" type="text" maxlength="256" pattern="/^[^@]{1,64}@[^@]{1,255}$" placeholder="请输入邮箱地址" name='email' confirm-type='next' />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">密保问题</view>
+            </view>
+            <view class="weui-cell__bd">
               <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
                 <view class="picker">
-                  {{array[index]}}
+                  <view class="{{questionPickerClass}}">{{selectQuestion}}</view>
                 </view>
               </picker>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <label class="weui-label">密保答案</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder-class="placeholder-class" type="text" pattern="^\S{1,64}$" placeholder="密保答案" name='answer' confirm-type='done' />
+            </view>
+          </view>
         </view>
-</view>
-<view class="weui-cell">
-    <view class="weui-cell__hd">
-        <label class="weui-label">密保答案</label>
+        <view class="weui-btn-area">
+          <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="click" form-type="submit" id="bind1">{{registerButtonString}}</button>
+        </view>
+        <view class="weui-btn-area">
+          <button class="weui-btn" type="default" bindtap="bind" disabled="{{disabled}}">返回绑定</button>
+        </view>
+      </form>
     </view>
-    <view class="weui-cell__bd">
-        <input class="weui-input" type="text" pattern="[0-9]*" placeholder="密保答案" name='answer' confirm-type='done'/>
+    <view class="weui-msg__extra-area">
+      <view class="weui-footer">
+        <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+      </view>
     </view>
-</view>
-  <view class="btn-area">
-    <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"disabled="{{disabled}}" bindtap="click" form-type="submit" id="bind1">注册新账号</button>
   </view>
-</form>
+</scroll-view>

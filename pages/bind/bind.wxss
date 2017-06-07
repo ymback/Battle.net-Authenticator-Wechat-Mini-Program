@@ -1,17 +1,26 @@
-@import '../../weui.wxss';
 @import '../login/login.wxss';
+
 page {
-    color: white;
-}
-.page__hd{
-    padding-left: 40rpx;
-    padding-right: 40rpx;
-}
-.page__title{
-  margin-top: 15rpx;
+  color: white;
 }
 
-
-.btn-area {
-  margin-bottom: 10px;
+.comfirm-area {
+  margin-top: 64rpx;
 }
+
+.weui-cell__hd {
+  width: 100rpx;
+}
+
+.page__hd {
+  padding: 10px 0 10px 10px;
+}
+
+.input-area {
+  background-color: transparent;
+}
+
+.page__title {
+  text-align: center;
+}
+

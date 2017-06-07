@@ -36,6 +36,10 @@ App({
     getOneButtonAuthRequestInfo: "https://myauth.zuzhanghao.com/api/wechat/getOneButtonAuthRequestInfo",
     commitOneKeyButtonAuthResponse: "https://myauth.zuzhanghao.com/api/wechat/commitOneKeyButtonAuthResponse",
     bindAccount: "https://myauth.zuzhanghao.com/api/wechat/bindAccount",
-    register: "http://myauth.zuzhanghao.com/api/wechat/register"
+    register: "https://myauth.zuzhanghao.com/api/wechat/register",
+    authAddByServer: "https://myauth.zuzhanghao.com/api/wechat/authAddByServer",
+    authAddByRestoreCode: "https://myauth.zuzhanghao.com/api/wechat/authAddByRestoreCode",
+    userInfo: "https://myauth.zuzhanghao.com/api/wechat/userInfo",
+    unBind: "https://myauth.zuzhanghao.com/api/wechat/unBind",
   }
 })
