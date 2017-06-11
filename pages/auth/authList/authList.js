@@ -7,6 +7,9 @@ Page({
     authList: [],
     errorString: '',
     showTopTips: false,
+    show1: true,
+    show2: true,
+    show3: true,
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
@@ -96,8 +99,26 @@ Page({
       complete: function () {
         isLoadingData = false;
         wx.hideLoading();
-      }
+      },
     })
+  },
+  longTapEvent: function (e) {
+    let that = this;
+    wx.showModal({
+      title: '确认删除？',
+      content: '删除本安全令',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.setData({
+            show1: false
+          })
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    });
   },
   showTopTips: function (error) {
     var that = this;

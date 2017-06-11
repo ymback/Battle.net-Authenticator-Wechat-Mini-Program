@@ -1,9 +1,26 @@
-<!--<view wx:for="{{authList}}" wx:for-item="authItem" wx:key="authItem" style="color:#000;">
-  {{authItem.authName}}
-</view>-->
-
-
-<scroll-view scroll-y class="scroll-height">
-    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
-    
-</scroll-view>
+<view class="page">
+    <view class="card" bindlongtap="longTapEvent" wx:if="{{show1}}" data-key="show1">
+        <view class="card-img logo-image"></view>
+        <view class="card-body">
+            <label class="card-body-title">默认安全令</label>
+            <label class="card-body-body">序列号:CN-1610-2013-8387</label>
+            <label class="card-body-desc">安全令ID:9275</label>
+        </view>
+    </view>
+    <view class="card" bindlongtap="longTapEvent" wx:if="{{show2}}" data-key="show2">
+        <view class="card-img logo-image"></view>
+        <view class="card-body">
+            <label class="card-body-title">默认安全令</label>
+            <label class="card-body-body">序列号:CN-1610-2013-8387</label>
+            <label class="card-body-desc">安全令ID:9275</label>
+        </view>
+    </view>
+    <view class="card" bindlongtap="longTapEvent" wx:if="{{show3}}" data-key="show3">
+        <view class="card-img logo-image"></view>
+        <view class="card-body">
+            <label class="card-body-title">默认安全令</label>
+            <label class="card-body-body">序列号:CN-1610-2013-8387</label>
+            <label class="card-body-desc">安全令ID:9275</label>
+        </view>
+    </view>
+</view>
