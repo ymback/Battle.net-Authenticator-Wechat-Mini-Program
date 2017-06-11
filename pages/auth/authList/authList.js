@@ -116,6 +116,19 @@ Page({
 
         } else if (res.cancel) {
           console.log('用户点击取消')
+  },
+
+  longTapEvent: function (e) {
+      let that = this;
+      wx.showModal({
+          title: '确认删除？',
+          content: '删除本安全令',
+          success: function (res) {
+              if (res.confirm) {
+                  console.log('用户点击确定')
+                  that.setData({
+                      show1: false
+                  })
         }
       }
     });
