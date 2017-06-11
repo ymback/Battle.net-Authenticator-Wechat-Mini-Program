@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    show1: true,
+    show2: true,
+    show3: true,
   },
 
   /**
@@ -40,7 +42,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    
   },
 
   /**
@@ -54,7 +56,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    
   },
 
   /**
@@ -62,5 +64,24 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  longTapEvent: function (e) {
+      let that = this;
+      wx.showModal({
+          title: '确认删除？',
+          content: '删除本安全令',
+          success: function (res) {
+              if (res.confirm) {
+                  console.log('用户点击确定')
+                  that.setData({
+                      show1: false
+                  })
+
+              } else if (res.cancel) {
+                  console.log('用户点击取消')
+              }
+          }
+      });
   }
 })
