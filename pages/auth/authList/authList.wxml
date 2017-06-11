@@ -1,2 +1,29 @@
-<!--authList.wxml-->
-<text>authList.wxml</text>
+<view class="page">
+    <view class="card">
+        <view class="card-img logo-image">
+        </view>
+        <view class="card-body">
+            <label class="card-body-title">默认安全令</label>
+            <label class="card-body-body">序列号:CN-1610-2013-8387</label>
+            <label class="card-body-desc">安全令ID:9275</label>
+        </view>
+    </view>
+        <view class="card">
+        <view class="card-img logo-image">
+        </view>
+        <view class="card-body">
+            <label class="card-body-title">默认安全令</label>
+            <label class="card-body-body">序列号:CN-1610-2013-8387</label>
+            <label class="card-body-desc">安全令ID:9275</label>
+        </view>
+    </view>
+        <view class="card">
+        <view class="card-img logo-image">
+        </view>
+        <view class="card-body">
+            <label class="card-body-title">默认安全令</label>
+            <label class="card-body-body">序列号:CN-1610-2013-8387</label>
+            <label class="card-body-desc">安全令ID:9275</label>
+        </view>
+    </view>
+</view>
