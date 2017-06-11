@@ -41,5 +41,6 @@ App({
     authAddByRestoreCode: "https://myauth.zuzhanghao.com/api/wechat/authAddByRestoreCode",
     userInfo: "https://myauth.zuzhanghao.com/api/wechat/userInfo",
     unBind: "https://myauth.zuzhanghao.com/api/wechat/unBind",
+    authList: "https://myauth.zuzhanghao.com/api/wechat/authList",
   }
 })

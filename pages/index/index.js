@@ -9,15 +9,17 @@ var screenWidth = 0;
 Page({
   data: {
     progress: 0,
-    authCode: "　　　　",
+    authCode: "正在加载",
     errorString: '',
     showTopTips: false,
     disabled: false,
     loading: false,
     refreshCodeButtonString: "刷新",
-    addAuthViewClass: "weui-btn-area hidden",
+    refreshButtonVisiable: "display:none;",
+    copyButtonVisiable: "display:none;",
     intentAuthId: "",
     pageBackgroundClassIndex: 0,
+    addAuthViewClass: "weui-btn-area hidden",
     pageBackgroundClarrArray: ["page-background-ow", 'page-background-d3', "page-background-hs", "page-background-wow1", "page-background-wow2", "page-background-wow3"]
   },
   onReady: function () {
@@ -27,14 +29,12 @@ Page({
     if (percent > 100) {
       percent = 100;
     }
-    var x = (screenWidth - ((screenWidth / 750) * 150)) / 2;
-    var y = (screenWidth - ((screenWidth / 750) * 150)) / 2;
-    var r = ((screenWidth / 750) * 260);
+    var x = (screenWidth / 750) * 300;
+    var y = (screenWidth / 750) * 300;
+    var r = (screenWidth / 750) * 256;
     var cxt_arc = wx.createCanvasContext('canvasArc');//创建并返回绘图上下文context对象。
-
-
     if (percent < 100) {
-      cxt_arc.setLineWidth(8);
+      cxt_arc.setLineWidth(10);
       cxt_arc.setStrokeStyle('#333333');
       cxt_arc.setLineCap('round')
       cxt_arc.beginPath();//开始一个新的路径  
@@ -45,12 +45,63 @@ Page({
       cxt_arc.draw();
       return;
     }
-    cxt_arc.setLineWidth(8);
-    cxt_arc.setStrokeStyle('#3ea6ff');
+    if (percent <= 50) {
+      var color = "rgb(116,223,0)";
+    } else if (percent < 75) {
+      var colorR = parseInt((percent - 50) * 5.56 + 116);
+      var colorG = parseInt(223 - (percent - 50) * 3.36);
+      var color = "rgb(" + colorR + "," + colorG + ",0)"
+    } else {
+      var colorG = parseInt(139 - (percent - 75) * 5.56);
+      var color = "rgb(255," + colorG + ",0)"
+    }
+    cxt_arc.setStrokeStyle(color);
+    cxt_arc.setLineWidth(10);
     cxt_arc.setLineCap('round')
     cxt_arc.beginPath();//开始一个新的路径  
     cxt_arc.arc(x, y, r, -0.5 * Math.PI, 2 * Math.PI * percent / 100 - 0.5 * Math.PI, false);
     cxt_arc.stroke();//对当前路径进行描边  
+    if (percent >= 83 && percent < 84) {
+      var rTemp = parseInt(15 * (percent - 83))
+      cxt_arc.setStrokeStyle(color);
+      cxt_arc.setLineWidth(rTemp + 3);
+      var arc = (2 - percent / 50) * Math.PI
+      var circleX = (screenWidth / 750) * (300 - 260 * Math.sin(arc));
+      var circleY = (screenWidth / 750) * (300 - 260 * Math.cos(arc));
+      var circleR = (screenWidth / 750) * rTemp;
+      cxt_arc.beginPath();//开始一个新的路径  
+      cxt_arc.arc(circleX, circleY, circleR, 0, 2 * Math.PI, false);
+      cxt_arc.stroke();//对当前路径进行描边
+    } else if (percent >= 84 && percent < 99.5) {
+      cxt_arc.setStrokeStyle(color);
+      cxt_arc.setLineWidth(18);
+      var arc = (2 - percent / 50) * Math.PI
+      var circleX = (screenWidth / 750) * (300 - 260 * Math.sin(arc));
+      var circleY = (screenWidth / 750) * (300 - 260 * Math.cos(arc));
+      var circleR = (screenWidth / 750) * 15;
+      cxt_arc.beginPath();//开始一个新的路径  
+      cxt_arc.arc(circleX, circleY, circleR, 0, 2 * Math.PI, false);
+      cxt_arc.stroke();//对当前路径进行描边
+
+
+      cxt_arc.setFontSize((screenWidth / 750) * 32)
+      var showSecond = parseInt((100 - percent) * 0.3) + 1;
+      showSecond = showSecond > 5 ? 5 : showSecond
+      cxt_arc.setFillStyle("white")
+      cxt_arc.setTextAlign('center')
+      cxt_arc.fillText(showSecond, circleX, circleY + (screenWidth / 750) * 10)
+    } else if (percent >= 99.5 && percent <= 100) {
+      var rTemp = parseInt(15 * (100 - percent) * 2)
+      cxt_arc.setStrokeStyle(color);
+      cxt_arc.setLineWidth(rTemp + 3);
+      var arc = (2 - percent / 50) * Math.PI
+      var circleX = (screenWidth / 750) * (300 - 260 * Math.sin(arc));
+      var circleY = (screenWidth / 750) * (300 - 260 * Math.cos(arc));
+      var circleR = (screenWidth / 750) * rTemp;
+      cxt_arc.beginPath();//开始一个新的路径  
+      cxt_arc.arc(circleX, circleY, circleR, 0, 2 * Math.PI, false);
+      cxt_arc.stroke();//对当前路径进行描边
+    }
     cxt_arc.draw();
   },
   onShow: function () {
@@ -178,8 +229,14 @@ Page({
             }
             that.setData({
               authCode: res.data.data.dynamicCode,
-              pageBackgroundClassIndex: randomNumber
+              pageBackgroundClassIndex: randomNumber,
+              refreshButtonVisiable: "display:none;"
             })
+            if (wx.setClipboardData) {
+              that.setData({
+                copyButtonVisiable: ""
+              })
+            }
             console.log(that.data.pageBackgroundClassIndex);
             second = res.data.data.usedSecond;
             refreshCodeProgressInter = setInterval(function () {
@@ -190,13 +247,13 @@ Page({
                 that.doSync();
                 return;
               }
-              second = second + 0.05;
+              second = second + 0.016;
               var percent = 100 * (second / 30);
               that.setData({
                 progress: percent
               });
               that.drawCircle(percent);
-            }, 50);
+            }, 16);
             return;
             break;
           default:
@@ -205,6 +262,11 @@ Page({
         }
       },
       fail: function () {
+        that.setData({
+          refreshButtonVisiable: "",
+          authCode: "",
+          copyButtonVisiable: "display:none;"
+        })
         that.showTopTips((firstLoaded ? "刷新" : "读取") + "失败，请点击刷新重试");
       },
       complete: function () {
@@ -346,6 +408,19 @@ Page({
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
+    })
+  },
+  doCpoy: function () {
+    var that = this;
+    wx.setClipboardData({
+      data: that.data.authCode,
+      success: function () {
+        wx.showToast({
+          title: '已复制到剪贴板',
+          icon: 'success',
+          duration: 1500,
+        })
+      }
     })
   },
   showTopTips: function (error) {

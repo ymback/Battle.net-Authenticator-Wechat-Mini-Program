@@ -1,2 +1,9 @@
-<!--authList.wxml-->
-<text>authList.wxml</text>
+<!--<view wx:for="{{authList}}" wx:for-item="authItem" wx:key="authItem" style="color:#000;">
+  {{authItem.authName}}
+</view>-->
+
+
+<scroll-view scroll-y class="scroll-height">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+    
+</scroll-view>

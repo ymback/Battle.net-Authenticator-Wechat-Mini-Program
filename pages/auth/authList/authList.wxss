@@ -1,1 +1,2 @@
 /* authList.wxss */
+@import "../../account/account.wxss"
