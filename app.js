@@ -29,6 +29,7 @@ App({
     userInfo: null
   },
   apiUrl: {
+    baseUrl: "https://myauth.zuzhanghao.com",
     getSessionToken: "https://myauth.zuzhanghao.com/api/wechat/getSessionToken",
     authDynamicCode: "https://myauth.zuzhanghao.com/api/wechat/authDynamicCode",
     authCount: "https://myauth.zuzhanghao.com/api/wechat/authCount",
