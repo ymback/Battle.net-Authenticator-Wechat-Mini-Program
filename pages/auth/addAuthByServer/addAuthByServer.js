@@ -246,15 +246,10 @@ Page({
               "canAddMoreAuth", res.data.data.canAddMoreAuth
             )
             setTimeout(function () {
-              if (res.data.data.isDefault) {
-                wx.redirectTo({
-                  url: '/pages/index/index'
-                })
-              } else {
-                wx.redirectTo({
-                  url: '/pages/index/index?authId=' + res.data.data.authId
-                })
-              }
+              app.globalData.intentAuthInfo = res.data.data
+              wx.switchTab({
+                url: '/pages/index/index'
+              })
             }, 1500);
             break;
           case 401:

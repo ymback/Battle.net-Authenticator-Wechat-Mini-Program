@@ -26,7 +26,9 @@ App({
     }
   },
   globalData: {
-    userInfo: null
+    intentAuthInfo: null,
+    userInfo: null,
+    needReloadAuthList: false,
   },
   apiUrl: {
     baseUrl: "https://myauth.zuzhanghao.com",

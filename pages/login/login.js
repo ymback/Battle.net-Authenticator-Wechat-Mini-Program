@@ -32,6 +32,7 @@ Page({
             if (wx.getStorageSync("authCount") > 0) {
               wx.switchTab({
                 url: '/pages/index/index'
+                // url:"/pages/auth/authList/authList"
               })
             } else {
               wx.redirectTo({
@@ -88,7 +89,7 @@ Page({
     this.setData({
       loading: true,
       disabled: true,
-      reLoginButtonString:"重新登录中"
+      reLoginButtonString: "重新登录中"
     })
     if (wx.showLoading) {
       wx.showLoading({

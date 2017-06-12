@@ -3,6 +3,7 @@ var app = getApp()
 var second = 0;
 var refreshCodeProgressInter = null;
 var oneButtonAuthInter = null;
+var oneButtonAuthLoadTimeout = null;
 var firstLoaded = false;
 var onHide = false;
 var screenWidth = 0;
@@ -84,12 +85,12 @@ Page({
       cxt_arc.stroke();//对当前路径进行描边
 
 
-      cxt_arc.setFontSize((screenWidth / 750) * 32)
+      cxt_arc.setFontSize((screenWidth / 750) * 48)
       var showSecond = parseInt((100 - percent) * 0.3) + 1;
       showSecond = showSecond > 5 ? 5 : showSecond
       cxt_arc.setFillStyle("white")
       cxt_arc.setTextAlign('center')
-      cxt_arc.fillText(showSecond, circleX, circleY + (screenWidth / 750) * 10)
+      cxt_arc.fillText(showSecond, circleX, circleY + (screenWidth / 750) * 16)
     } else if (percent >= 99.5 && percent <= 100) {
       var rTemp = parseInt(15 * (100 - percent) * 2)
       cxt_arc.setStrokeStyle(color);
@@ -105,13 +106,68 @@ Page({
     cxt_arc.draw();
   },
   onShow: function () {
-    if (wx.getStorageSync("canAddMoreAuth")) {
+    onHide = false;
+    var that = this;
+    if (wx.getStorageSync("canAddMoreAuth")) {//每次ONSHOW的时候判断是否可以添加
       this.setData({
         addAuthViewClass: "weui-btn-area"
       })
     }
-    this.oneButtonAuthLoad();
-    onHide = false;
+    if (app.globalData.intentAuthInfo != null) {//如果是令牌列表传参过来的，那么读取这个安全令
+      console.log(app.globalData.intentAuthInfo.authName)
+      if (this.data.intentAuthId != app.globalData.intentAuthInfo.authId) {
+        wx.setNavigationBarTitle({
+          title: app.globalData.intentAuthInfo.isDefault == true ? "默认安全令" : '查看安全令',
+          fail: function (e) {
+            console.log(e)
+          }
+        })
+        this.setData({
+          intentAuthId: app.globalData.intentAuthInfo.authId,
+          authCode: "正在加载"
+        })
+        try {
+          clearInterval(refreshCodeProgressInter);
+        } catch (e) {
+          console.log(e);
+        } finally {
+          refreshCodeProgressInter = null;
+        }
+        try {
+          clearInterval(oneButtonAuthInter);
+        } catch (e) {
+          console.log(e);
+        } finally {
+          oneButtonAuthInter = null;
+        }
+        this.drawCircle(0);
+        wx.checkSession({
+          success: function (res) {
+            that.doSync(true)
+          },
+          fail: function (res) {
+            wx.redirectTo({
+              url: '/pages/login/login',
+            })
+          }
+        })
+      }
+      app.globalData.intentAuthInfo = null;
+    } else {
+      wx.setNavigationBarTitle({
+        title: '默认安全令'
+      })
+      wx.checkSession({
+        success: function (res) {
+          that.doSync(true)
+        },
+        fail: function (res) {
+          wx.redirectTo({
+            url: '/pages/login/login',
+          })
+        }
+      })
+    }
   },
   onHide: function () {
     onHide = true;
@@ -130,46 +186,12 @@ Page({
     this.setData({
       pageBackgroundClassIndex: randomNumber
     })
-    if (option === undefined || option.authId === undefined) {
-      wx.setNavigationBarTitle({
-        title: '默认安全令'
-      })
-    } else {
-      this.setData({
-        intentAuthId: option.authId
-      })
-      wx.setNavigationBarTitle({
-        title: '查看安全令'
-      })
-    }
-
-    var that = this;
-    if (wx.getStorageSync("canAddMoreAuth")) {
-      this.setData({
-        addAuthViewClass: "weui-btn-area"
-      })
-    }
-    wx.getStorage({
-      key: 'skey',
-      success: function (res) {
-        console.log(res.data)
-      }
-    })
-    wx.checkSession({
-      success: function (res) {
-        console.log(res)
-        that.doSync()
-        that.oneButtonAuthLoad()
-      },
-      fail: function (res) {
-        wx.redirectTo({
-          url: '/pages/login/login',
-        })
-      },
-      complete: function (res) { },
-    })
   },
-  doSync: function () {
+  doSync: function (needOneButtonAuthLoad) {
+    if (needOneButtonAuthLoad) {
+      clearTimeout(oneButtonAuthLoadTimeout);
+      this.oneButtonAuthLoad()
+    }
     if (onHide || this.data.loading) {
       return;
     }
@@ -223,13 +245,17 @@ Page({
             break;
           case 200:
             firstLoaded = true;
-            var randomNumber = parseInt(6 * Math.random());
-            if (randomNumber == that.data.pageBackgroundClassIndex) {
-              randomNumber = (that.data.pageBackgroundClassIndex + 1) % 6
+            if (!needOneButtonAuthLoad) {
+              var randomNumber = parseInt(6 * Math.random());
+              if (randomNumber == that.data.pageBackgroundClassIndex) {
+                randomNumber = (that.data.pageBackgroundClassIndex + 1) % 6
+              }
+              that.setData({
+                pageBackgroundClassIndex: randomNumber
+              })
             }
             that.setData({
               authCode: res.data.data.dynamicCode,
-              pageBackgroundClassIndex: randomNumber,
               refreshButtonVisiable: "display:none;"
             })
             if (wx.setClipboardData) {
@@ -244,7 +270,7 @@ Page({
                 that.setData({
                   progress: 0
                 });
-                that.doSync();
+                that.doSync(false);
                 return;
               }
               second = second + 0.016;
@@ -318,15 +344,18 @@ Page({
               }
             },
             fail: function () {
-              setTimeout(() => { that.oneButtonAuthLoad() }, 5000)
+              clearTimeout(oneButtonAuthLoadTimeout);
+              oneButtonAuthLoadTimeout = setTimeout(() => { that.oneButtonAuthLoad() }, 5000)
             }
           });
           return;
         }
-        setTimeout(() => { that.oneButtonAuthLoad() }, 5000)
+        clearTimeout(oneButtonAuthLoadTimeout);
+        oneButtonAuthLoadTimeout = setTimeout(() => { that.oneButtonAuthLoad() }, 5000)
       },
       fail: function () {
-        setTimeout(() => { that.oneButtonAuthLoad() }, 5000)
+        clearTimeout(oneButtonAuthLoadTimeout);
+        oneButtonAuthLoadTimeout = setTimeout(() => { that.oneButtonAuthLoad() }, 5000)
       }
     })
   },
@@ -393,7 +422,8 @@ Page({
       },
       complete: function () {
         wx.hideLoading()
-        setTimeout(() => { that.oneButtonAuthLoad() }, 5000)
+        clearTimeout(oneButtonAuthLoadTimeout);
+        oneButtonAuthLoadTimeout = setTimeout(() => { that.oneButtonAuthLoad() }, 5000)
       }
     })
   },
