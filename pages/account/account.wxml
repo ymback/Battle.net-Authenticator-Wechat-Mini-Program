@@ -23,7 +23,7 @@
         <view class="weui-cell__ft">{{userEmail}}</view>
       </view>
       <view class="weui-cell">
-        <view class="weui-cell__bd">邮箱确认状态</view>
+        <view class="weui-cell__bd">邮箱状态</view>
         <view class="weui-cell__ft">{{userEmailChecked}}</view>
       </view>
       <view class="weui-cell">
@@ -42,7 +42,7 @@
   </view>
 
   <view class="weui-btn-area">
-    <button type="primary" bindtap="unBindDialog" disabled="{{disabled}}" loading="{{loading}}">{{unbindButtonString}}</button>
+    <button type="primary" bindtap="unBindDialog" disabled="{{disabled}}" loading="{{loading}}">解除绑定</button>
   </view>
 
   <view class="weui-footer" style="margin-top:48rpx;">
