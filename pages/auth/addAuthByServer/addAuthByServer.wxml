@@ -16,15 +16,15 @@
       <view class="weui-cells weui-cells_after-title input-area">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">
-            <view class="weui-label">安全令名称</view>
+            <view class="weui-label">名称</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder-class="placeholder-class" type="text" maxlength="12" pattern="^\S{1,12}$" placeholder="请输入安全令名称" name="authname" confirm-type='done' />
+            <input class="weui-input" placeholder-class="placeholder-class" type="text" maxlength="12" pattern="^\S{1,12}$" placeholder="请输入名称" name="authname" confirm-type='done' />
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">
-            <view class="weui-label">安全令区域</view>
+            <view class="weui-label">区域</view>
           </view>
           <view class="weui-cell__bd">
             <picker bindchange="regionPickerChange" value="{{regionIndex}}" range="{{regionPickerArray}}">
@@ -36,7 +36,7 @@
         </view>
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">
-            <view class="weui-label">安全令图片</view>
+            <view class="weui-label">图片</view>
           </view>
           <view class="weui-cell__bd">
             <radio checked="{{authPicArray[0].checked}}" bindtap="wowRadioClick">
@@ -60,7 +60,7 @@
           </view>
         </view>
         <view class="weui-cell weui-cell_switch">
-          <view class="weui-cell__bd">设置为默认安全令</view>
+          <view class="weui-cell__bd">设为默认</view>
           <view class="weui-cell__ft">
             <switch bindchange="defaultAuthSwitchListener" />
           </view>
@@ -70,7 +70,7 @@
         <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" form-type="submit" id="bind1">{{addAuthButtonString}}</button>
       </view>
       <view class="weui-btn-area">
-        <button class="weui-btn" type="default" bindtap="addByRestore" disabled="{{disabled}}">通过10位还原码还原安全令</button>
+        <button class="weui-btn" type="default" bindtap="addByRestore" disabled="{{disabled}}">还原安全令</button>
       </view>
     </form>
     <view class="weui-footer" style="margin-top:48rpx;">

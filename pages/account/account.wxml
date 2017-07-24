@@ -2,10 +2,10 @@
   <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
   <view class="page__hd">
     <image class="logo-image"></image>
-    <view class="page__title">{{showPageHint}}</view>
+    <view class="page__title">账号信息</view>
   </view>
   <view class="page__bd">
-    <view class="weui-cells weui-cells_after-title transparent">
+    <view class="weui_cells transparent">
       <view class="weui-cell">
         <view class="weui-cell__bd">用户名</view>
         <view class="weui-cell__ft">{{userName}}</view>
@@ -15,7 +15,7 @@
         <view class="weui-cell__ft">{{userId}}</view>
       </view>
       <view class="weui-cell">
-        <view class="weui-cell__bd">用户账号类型</view>
+        <view class="weui-cell__bd">账号类型</view>
         <view class="weui-cell__ft">{{userRight}}</view>
       </view>
       <view class="weui-cell">
@@ -23,7 +23,7 @@
         <view class="weui-cell__ft">{{userEmail}}</view>
       </view>
       <view class="weui-cell">
-        <view class="weui-cell__bd">邮箱地址确认状态</view>
+        <view class="weui-cell__bd">邮箱状态</view>
         <view class="weui-cell__ft">{{userEmailChecked}}</view>
       </view>
       <view class="weui-cell">
@@ -42,7 +42,7 @@
   </view>
 
   <view class="weui-btn-area">
-    <button type="primary" bindtap="unBindDialog" disabled="{{disabled}}" loading="{{loading}}">{{unbindButtonString}}</button>
+    <button type="primary" bindtap="unBindDialog" disabled="{{disabled}}" loading="{{loading}}">解除绑定</button>
   </view>
 
   <view class="weui-footer" style="margin-top:48rpx;">

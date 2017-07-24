@@ -4,5 +4,16 @@
   background-color: transparent;
 }
 .page__bd{
-  padding-bottom:20rpx; 
+  padding-bottom:20rpx;
+  margin-bottom: 20rpx; 
+}
+
+.weui-cell {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.weui-cell__bd {
+    font-weight: 200;
+    font-size: 18px;
 }

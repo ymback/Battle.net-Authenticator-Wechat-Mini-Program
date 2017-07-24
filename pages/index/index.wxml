@@ -13,17 +13,17 @@
         </view>
       </view>
       <view class="weui-flex__item center main">
-        <button style="{{copyButtonVisiable}}" class="weui-btn mini-btn" bindtap="doCpoy" type="primary" size="mini" disabled="{{disabled}}">复制验证码</button>
+        <button style="{{copyButtonVisiable}}" class="weui-btn mini-btn" bindtap="doCpoy" type="default" size="mini" disabled="{{disabled}}">复制</button>
       </view>
     </view>
     <view class="weui-msg__extra-area">
       <view class="weui-footer ">
         <view class="get_button page__bd_spacing ">
           <view class="{{addAuthViewClass}} ">
-            <button class="weui-btn " type="default " bindtap="addMoreAuth">添加安全令</button>
+            <button  type="primary" bindtap="addMoreAuth">添加安全令</button>
           </view>
           <view class="weui-btn-area " style="margin-bottom:48rpx;">
-            <button type="default " bindtap="seeAuthDetail">查看安全令详情</button>
+            <button type="default " bindtap="seeAuthDetail">安全令详情</button>
           </view>
         </view>
         <view class="weui-footer__text ">Copyright © 2013-2017 竹井詩織里</view>
