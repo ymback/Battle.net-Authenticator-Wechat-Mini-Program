@@ -156,7 +156,7 @@ Page({
             break;
           case 200:
             wx.setStorageSync("canAddMoreAuth", res.data.data.canAddMoreAuth);
-            wx.setStorageSync("authCount", res.data.data.count);
+            wx.setStorageSync("authCount", res.data.data.authCount);
             if (res.data.data.canAddMoreAuth) {
               return;
             }

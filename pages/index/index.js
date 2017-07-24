@@ -38,9 +38,9 @@ Page({
       cxt_arc.setLineWidth(10);
       cxt_arc.setStrokeStyle('#333333');
       cxt_arc.setLineCap('round')
-      cxt_arc.beginPath();//开始一个新的路径  
-      cxt_arc.arc(x, y, r, 2 * Math.PI * percent / 100 - 0.5 * Math.PI, 1.5 * Math.PI, false);//设置一个原点(106,106)，半径为100的圆的路径到当前路径  
-      cxt_arc.stroke();//对当前路径进行描边  
+      cxt_arc.beginPath();
+      cxt_arc.arc(x, y, r, 2 * Math.PI * percent / 100 - 0.5 * Math.PI, 1.5 * Math.PI, false);
+      cxt_arc.stroke();  
     }
     if (percent == 0) {
       cxt_arc.draw();
@@ -112,6 +112,10 @@ Page({
       this.setData({
         addAuthViewClass: "weui-btn-area"
       })
+    }
+    if (app.globalData.deletedAuthNeedRefreshIndex){
+      app.globalData.deletedAuthNeedRefreshIndex=false;
+      app.globalData.intentAuthInfo=null;
     }
     if (app.globalData.intentAuthInfo != null) {//如果是令牌列表传参过来的，那么读取这个安全令
       console.log(app.globalData.intentAuthInfo.authName)
@@ -428,9 +432,10 @@ Page({
     })
   },
   seeAuthDetail: function () {
-    if (this.data.intentAuthId != "") {
-
-    }
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/auth/authDetail/authDetail?authId=' + that.data.intentAuthId,
+    })
   },
   addMoreAuth: function () {
     wx.navigateTo({
@@ -464,5 +469,11 @@ Page({
         showTopTips: false
       });
     }, 3000);
+  }, onShareAppMessage: function () {
+    return {
+      title: '玻璃渣游戏安全',
+      desc: '支持一键安全令的小程序版安全令查看器！',
+      path: '/pages/index/index'
+    }
   }
 })

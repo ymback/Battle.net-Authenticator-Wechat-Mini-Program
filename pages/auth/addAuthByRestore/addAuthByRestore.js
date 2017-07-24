@@ -134,7 +134,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function () {//能跳这个页面，前一个页面已经校验了，不用再校验数量了
     hasAddAuthSuccess = false;
     var that = this
     let url = app.apiUrl.authCount

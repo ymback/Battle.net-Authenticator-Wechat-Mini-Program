@@ -1,7 +1,7 @@
 // account.js
 var app = getApp()
 var hasSuccessLoaded = false;
-var hasUnbindSuccess = false;
+var isUnbinding = false;
 var isLoading = false;
 Page({
 
@@ -49,10 +49,10 @@ Page({
     });
   },
   doUnBind: function () {
-    if (hasUnbindSuccess) {
+    if (isUnbinding) {
       return;
     }
-    hasUnbindSuccess = true;
+    isUnbinding = true;
     var that = this;
     let url = app.apiUrl.unBind;
     let token = wx.getStorageSync('skey')
@@ -108,7 +108,7 @@ Page({
         })
       },
       complete: function () {
-        hasUnbindSuccess = false;
+        isUnbinding = false;
       }
     })
   },

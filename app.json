@@ -8,7 +8,8 @@
     "pages/auth/addAuthByServer/addAuthByServer",
     "pages/auth/addAuthByRestore/addAuthByRestore",
     "pages/account/account",
-    "pages/auth/authList/authList"
+    "pages/auth/authList/authList",
+    "pages/auth/authDetail/authDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
