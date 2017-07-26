@@ -48,3 +48,12 @@ page {
 .page__title {
   text-align: center;
 }
+.weui-cell {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.weui-cell__bd {
+    font-weight: 200;
+    font-size: 18px;
+}
