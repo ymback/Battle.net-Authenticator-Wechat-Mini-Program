@@ -4,7 +4,7 @@
 功能:支持在微信小程序端进行战网安全令颁发、还原、8位密钥查看，支持暴雪一键安全令功能(即免输安全令一键登录)。<br>
 
 ## 如何使用
-![image](https://github.com/ymback/Battle.net-Authenticator-Wechat-Mini-Program/blob/dev/QRCODE.jpg)<br>
+![image](https://github.com/ymback/Battle.net-Authenticator-Wechat-Mini-Program/blob/master/QRCODE.jpg)<br>
 使用微信扫描上方小程序码，即可使用。
 
 ## 相关站点信息
