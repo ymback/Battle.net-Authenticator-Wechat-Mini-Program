@@ -12,7 +12,7 @@
 如欲捐赠，请参访[https://myauth.us/donate.php](https://myauth.us/donate.php)页面。 
 
 ## 其他开发人员
-[https://github.com/xuelu520](xuelu520)、[https://github.com/yclnycl](yclnycl)
+[xuelu520](https://github.com/xuelu520)、[yclnycl](https://github.com/yclnycl)
 
 # License
 ```text
