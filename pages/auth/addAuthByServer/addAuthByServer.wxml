@@ -1,0 +1,80 @@
+<scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+  <view>
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+    <view class="page__hd">
+      <image class="logo-image"></image>
+      <view class="weui-article">
+        您可以在本页面通过我们的服务器自动申请一枚新的玻璃渣安全令，可以选择CN/US/EU三个区域的安全令，默认为CN，在非国服环境下，US和EU的安全令在网页和游戏中通用。
+      </view>
+    </view>
+
+
+  </view>
+
+  <view class="page__bd">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="weui-cells weui-cells_after-title input-area">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">名称</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder-class="placeholder-class" type="text" maxlength="12" pattern="^\S{1,12}$" placeholder="请输入名称" name="authname" confirm-type='done' />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">区域</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="regionPickerChange" value="{{regionIndex}}" range="{{regionPickerArray}}">
+              <view class="picker">
+                <view class="weui-input"> {{regionPickerArray[regionIndex]}}</view>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">图片</view>
+          </view>
+          <view class="weui-cell__bd">
+            <radio checked="{{authPicArray[0].checked}}" bindtap="wowRadioClick">
+              <view class="weui-input radio-background radio-wow"> </view>
+            </radio>
+            <radio checked="{{authPicArray[1].checked}}" bindtap="scRadioClick">
+              <view class="weui-input radio-background  radio-sc"> </view>
+            </radio>
+            <radio checked="{{authPicArray[2].checked}}" bindtap="d3RadioClick">
+              <view class="weui-input radio-background-last radio-d3"> </view>
+            </radio>
+            <radio checked="{{authPicArray[3].checked}}" bindtap="hsRadioClick">
+              <view class="weui-input radio-background radio-hs"> </view>
+            </radio>
+            <radio checked="{{authPicArray[4].checked}}" bindtap="shRadioClick">
+              <view class="weui-input radio-background radio-sh"> </view>
+            </radio>
+            <radio checked="{{authPicArray[5].checked}}" bindtap="owRadioClick">
+              <view class="weui-input radio-background-last radio-ow"> </view>
+            </radio>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_switch">
+          <view class="weui-cell__bd">设为默认</view>
+          <view class="weui-cell__ft">
+            <switch bindchange="defaultAuthSwitchListener" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-btn-area">
+        <button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" form-type="submit" id="bind1">{{addAuthButtonString}}</button>
+      </view>
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="default" bindtap="addByRestore" disabled="{{disabled}}">还原安全令</button>
+      </view>
+    </form>
+    <view class="weui-footer" style="margin-top:48rpx;">
+      <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,33 @@
+<view class="page {{pageBackgroundClarrArray[pageBackgroundClassIndex]}}">
+  <scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+    <view class="top-view">
+      <image class="code-background"></image>
+      <view class="canvas-parent">
+        <canvas class="circle" canvas-id="canvasArc"> </canvas>
+        <view class="code-parent">
+          <text class="code-view center">{{authCode}}</text>
+        </view>
+        <view class="code-parent">
+          <button style="{{refreshButtonVisiable}}" class="weui-btn refresh-button" bindtap="doSync" type="primary" disabled="{{disabled}}" loading="{{loading}}">{{refreshCodeButtonString}}</button>
+        </view>
+      </view>
+      <view class="weui-flex__item center main">
+        <button style="{{copyButtonVisiable}}" class="weui-btn mini-btn" bindtap="doCpoy" type="default" size="mini" disabled="{{disabled}}">复制</button>
+      </view>
+    </view>
+    <view class="weui-msg__extra-area">
+      <view class="weui-footer ">
+        <view class="get_button page__bd_spacing ">
+          <view class="{{addAuthViewClass}} ">
+            <button  type="primary" bindtap="addMoreAuth">添加安全令</button>
+          </view>
+          <view class="weui-btn-area " style="margin-bottom:48rpx;">
+            <button type="default " bindtap="seeAuthDetail">安全令详情</button>
+          </view>
+        </view>
+        <view class="weui-footer__text ">Copyright © 2013-2017 竹井詩織里</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,55 @@
+<scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+  <view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+    <view class="page__hd">
+      <block wx:if="{{data.authImage}}">
+        <image src="{{data.authImage}}" class="detail-img"></image>
+      </block>
+      <block wx:else>
+        <image class="logo-image"></image>
+      </block>
+    </view>
+    <view class="page__bd">
+      <view class="weui_cells transparent">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">ID</view>
+          <view class="weui-cell__ft">{{data.authId}}</view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">设定名称</view>
+          <view class="weui-cell__ft">{{data.authName}}</view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">区域</view>
+          <view class="weui-cell__ft">{{data.authRegion}}</view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">序列号</view>
+          <view class="weui-cell__ft">{{data.authSerial}}</view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">还原码</view>
+          <view class="weui-cell__ft">{{data.authRestoreCode}}</view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">默认安全令</view>
+          <view class="weui-cell__ft">
+            <block wx:if="{{data.isDefault}}">是</block>
+            <block wx:elif="{{data.isDefault==false}}">否</block>
+            <block wx:else></block>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <block wx:if="{{data!=null}}">
+      <view class="weui-btn-area">
+        <button type="primary" bindtap="showDeleteAuthDialog" disabled="{{disabled}}" loading="{{loading}}">{{deleteButtonString}}</button>
+      </view>
+    </block>
+
+    <view class="weui-footer" style="margin-top:48rpx;">
+      <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,27 @@
+<view>
+  <scroll-view scroll-y class="{{scrollFixedClass}}">
+    <view wx:for="{{authList}}" wx:for-item="authItem" wx:key="authItem">
+      <view class="card" data-id="{{index}}" bindtap="onAuthClick">
+        <view class='card-img-view'>
+          <image class="card-img" src="{{authItem.authImage}}"></image>
+        </view>
+        <view class="card-body">
+          <block wx:if="{{authItem.isDefault}}">
+            <image class="defaultAuth"></image>
+          </block>
+          <text class="card-body-title">{{authItem.authId}}:{{authItem.authName}}</text>
+          <text class="card-body-body">序列号:{{authItem.authSerial}}</text>
+          <text class="card-body-desc">还原码:{{authItem.authRestoreCode}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="weui-msg__extra-area">
+    <view class="weui-footer">
+      <view class="weui-btn-area" style="margin-bottom:20rpx; {{addAuthButtonStyle}}">
+        <button class="weui-btn" type="primary" size="{{defaultSize}}" bindtap="goToAddAuth">添加安全令</button>
+      </view>
+      <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    </view>
+  </view>
+</view>

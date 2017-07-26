@@ -1,0 +1,51 @@
+<scroll-view scroll-y enable-back-to-top="true" class="scroll-height">
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorString}}</view>
+  <view class="page__hd">
+    <image class="logo-image"></image>
+    <view class="page__title">账号信息</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui_cells transparent">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">用户名</view>
+        <view class="weui-cell__ft">{{userName}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">用户ID</view>
+        <view class="weui-cell__ft">{{userId}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">账号类型</view>
+        <view class="weui-cell__ft">{{userRight}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">邮箱地址</view>
+        <view class="weui-cell__ft">{{userEmail}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">邮箱状态</view>
+        <view class="weui-cell__ft">{{userEmailChecked}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">注册时间</view>
+        <view class="weui-cell__ft">{{userRegisterTime}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">上次登录时间</view>
+        <view class="weui-cell__ft">{{userLastLoginTime}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">上次登录IP</view>
+        <view class="weui-cell__ft">{{userLastLoginIp}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-btn-area">
+    <button type="primary" bindtap="unBindDialog" disabled="{{disabled}}" loading="{{loading}}">解除绑定</button>
+  </view>
+
+  <view class="weui-footer" style="margin-top:48rpx;">
+    <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+  </view>
+</scroll-view>

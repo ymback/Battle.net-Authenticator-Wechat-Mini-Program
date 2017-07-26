@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/bind/bind",
+    "pages/register/register",
+    "pages/auth/addAuthByServer/addAuthByServer",
+    "pages/auth/addAuthByRestore/addAuthByRestore",
+    "pages/account/account",
+    "pages/auth/authList/authList",
+    "pages/auth/authDetail/authDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "玻璃渣游戏安全令",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#dbdbdb",
+    "selectedColor": "#62b900",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "Resources/code_selected.png",
+        "iconPath": "Resources/code_normal.png",
+        "pagePath": "pages/index/index",
+        "text": "查看密钥"
+      },
+      {
+        "selectedIconPath": "Resources/auth_selected.png",
+        "iconPath": "Resources/auth_normal.png",
+        "pagePath": "pages/auth/authList/authList",
+        "text": "令牌列表"
+      },
+      {
+        "selectedIconPath": "Resources/account_selected.png",
+        "iconPath": "Resources/account_normal.png",
+        "pagePath": "pages/account/account",
+        "text": "账号信息"
+      }
+    ]
+  }
+}

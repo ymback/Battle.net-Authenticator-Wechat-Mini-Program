@@ -1,0 +1,59 @@
+@import '../../login/login.wxss';
+
+page {
+  color: white;
+}
+
+.comfirm-area {
+  margin-top: 64rpx;
+}
+
+.weui-cell__hd {
+  width: 100rpx;
+}
+
+.page__hd {
+  padding: 10px 0 10px 10px;
+}
+
+.input-area {
+  background-color: transparent;
+}
+
+.page__title {
+  text-align: center;
+}
+
+.detail-img {
+  display: block;
+  margin: auto;
+  height: 108rpx;
+  width: 108rpx;
+  margin-top: 20rpx;
+  margin-bottom: 12rpx;
+}
+
+.page__bd {
+  padding: 10px 0 10px 10px;
+}
+
+.transparent {
+  background-color: transparent;
+}
+.weui-cell__hd {
+  width: 100rpx;
+}
+
+
+.page__title {
+  text-align: center;
+}
+.weui-cell {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.weui-cell__bd {
+    font-weight: 200;
+    font-size: 18px;
+}

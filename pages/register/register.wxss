@@ -1,0 +1,13 @@
+@import '../bind/bind.wxss';
+
+page {
+  color: white;
+}
+
+.input-area {
+  background-color: transparent;
+}
+
+.weui-cell__hd {
+  width: 180rpx;
+}
