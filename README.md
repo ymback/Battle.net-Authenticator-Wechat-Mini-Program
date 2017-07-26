@@ -11,6 +11,9 @@
 [https://myauth.us/](https://myauth.us/)是作者搭建的网页版战网安全令站点。<br>
 如欲捐赠，请参访[https://myauth.us/donate.php](https://myauth.us/donate.php)页面。 
 
+## 其他开发人员
+[https://github.com/xuelu520](xuelu520)、[https://github.com/yclnycl](yclnycl)
+
 # License
 ```text
     Battle.net Authenticator Wechat Mini Program
