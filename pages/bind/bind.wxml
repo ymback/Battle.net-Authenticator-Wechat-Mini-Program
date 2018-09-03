@@ -30,7 +30,8 @@
         </view>
         <view class="comfirm-area">
           <view class="weui-btn-area">
-            <button class="weui-btn" type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" form-type="submit" id="bind1">{{bindButtonString}}</button>
+            <button class="weui-btn" type="primary" wx:if="{{!canIUseOpenData || (wechatNickname!=null && wechatNickname.length >0)}}" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" form-type="submit" id="bind1">{{bindButtonString}}</button>
+            <button class="weui-btn" type="primary" wx:if="{{canIUseOpenData && (wechatNickname==null || wechatNickname.length <1)}}" size="{{defaultSize}}" open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo' id="bind2">获取用户信息</button>
           </view>
           <view class="weui-btn-area">
             <button class="weui-btn" type="default" bindtap="register" disabled="{{disabled}}">注册新账号</button>
@@ -40,7 +41,7 @@
     </view>
     <view class="weui-msg__extra-area">
       <view class="weui-footer">
-        <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    <view class="weui-footer__text">Copyright © 2013-{{currentYear}} 竹井詩織里</view>
       </view>
     </view>
   </view>

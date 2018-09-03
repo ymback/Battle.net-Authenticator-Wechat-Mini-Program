@@ -4,6 +4,7 @@ var isLoadingData = false;
 var isAuthListLoadedSuccess = false;
 Page({
   data: {
+    currentYear: new Date().getFullYear(),
     authList: false,
     errorString: '',
     showTopTips: false,

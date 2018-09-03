@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentYear: new Date().getFullYear(),
     array: ['您出生的城市是哪里?', '您手机的型号是什么?', '您就读的第一所小学名称是?', '您的初恋情人叫什么名字?',
       '您驾照的末四位是什么?', '您母亲的姓名叫什么?', '您母亲的生日是哪一天?', '您父亲的生日是哪一天?'],
     questionArray: [
@@ -58,21 +59,83 @@ Page({
     disabled: false,
     questionPickerClass: "weui-input placeholder-class",
     registerButtonString: "注册",
-    wechatNickname: null
+    wechatNickname: null,
+    canIUseOpenData: wx.canIUse("button.open-type.getUserInfo"),
   },
 
   onLoad: function (options) {
-    registerSuccess = false;
-    var that = this;
     wx.setNavigationBarTitle({
       title: '注册新账号'
     })
-    wx.getUserInfo({
-      success: function (res) {
-        var userInfo = res.userInfo
-        that.setData({
-          wechatNickname: userInfo.nickName
-        })
+    if (!wx.canIUse("button.open-type.getUserInfo")) {
+      this.getUserInfoData
+    }
+  },
+  getUserInfoData: function () {
+    registerSuccess = false;
+    var that = this;
+    wx.getSetting({
+      success: res => {
+        console.log(res)
+        if (res.authSetting['scope.userInfo'] === true) { // 成功授权
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              var userInfo = res.userInfo
+              that.setData({
+                wechatNickname: userInfo.nickName
+              })
+            },
+            fail: res => {
+              wx.getUserInfo({
+                success: res => {
+                  var userInfo = res.userInfo
+                  that.setData({
+                    wechatNickname: userInfo.nickName
+                  })
+                },
+                fail: res => {
+                  wx.openSetting({
+                    success: res => {
+                      getUserInfoData();
+                    },
+                    fail: res => {
+                      this.showTopTips("请允许微信授权，我们只需要您的昵称，并通过邮件告知您绑定的账号信息");
+                    }
+                  })
+                }
+              })
+            }
+          })
+        } else if (res.authSetting['scope.userInfo'] === false) { // 授权弹窗被拒绝
+          wx.openSetting({
+            success: res => {
+              getUserInfoData();
+            },
+            fail: res => {
+              this.showTopTips("请允许微信授权，我们只需要您的昵称，并通过邮件告知您绑定的账号信息");
+            }
+          })
+        } else { // 没有弹出过授权弹窗
+          wx.getUserInfo({
+            success: res => {
+              var userInfo = res.userInfo
+              that.setData({
+                wechatNickname: userInfo.nickName
+              })
+            },
+            fail: res => {
+              wx.openSetting({
+                success: res => {
+                  getUserInfoData();
+                },
+                fail: res => {
+                  this.showTopTips("请允许微信授权，我们只需要您的昵称，并通过邮件告知您绑定的账号信息");
+                }
+              })
+            }
+          })
+        }
       }
     })
   },
@@ -221,6 +284,15 @@ Page({
         wx.hideLoading()
         that.showTopTips('注册失败，请重试');
       }
+    })
+  },
+  registerGetUserInfo: function (e) {
+    if (undefined === e || undefined === e.detail || undefined === e.detail.userInfo) {
+      this.showTopTips("请允许微信授权，我们只需要您的昵称，并通过邮件告知您绑定的账号信息");
+      return;
+    }
+    this.setData({
+      wechatNickname: e.detail.userInfo.nickName
     })
   },
   showTopTips: function (error) {

@@ -21,7 +21,7 @@
       <view class="weui-btn-area" style="margin-bottom:20rpx; {{addAuthButtonStyle}}">
         <button class="weui-btn" type="primary" size="{{defaultSize}}" bindtap="goToAddAuth">添加安全令</button>
       </view>
-      <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    <view class="weui-footer__text">Copyright © 2013-{{currentYear}} 竹井詩織里</view>
     </view>
   </view>
 </view>

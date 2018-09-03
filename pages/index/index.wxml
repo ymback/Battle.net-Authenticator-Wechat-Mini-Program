@@ -26,7 +26,7 @@
             <button type="default " bindtap="seeAuthDetail">安全令详情</button>
           </view>
         </view>
-        <view class="weui-footer__text ">Copyright © 2013-2017 竹井詩織里</view>
+    <view class="weui-footer__text">Copyright © 2013-{{currentYear}} 竹井詩織里</view>
       </view>
     </view>
   </scroll-view>

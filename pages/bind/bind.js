@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentYear: new Date().getFullYear(),
     defaultSize: 'default',
     primarySize: 'default',
     warnSize: 'default',
@@ -19,31 +20,91 @@ Page({
     showTopTips: false,
     wechatNickname: null,
     bindButtonString: "绑定",
+    canIUseOpenData: wx.canIUse("button.open-type.getUserInfo"),
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    bindSuccess = false;
-    var that = this;
     wx.setNavigationBarTitle({
       title: '绑定已有账号'
     })
-    wx.getUserInfo({
-      success: function (res) {
-        var userInfo = res.userInfo
-        that.setData({
-          wechatNickname: userInfo.nickName
-        })
+    if (!wx.canIUse("button.open-type.getUserInfo")) {
+      this.getUserInfoData
+    }
+  },
+  getUserInfoData: function () {
+    bindSuccess = false;
+    var that = this;
+    wx.getSetting({
+      success: res => {
+        console.log(res)
+        if (res.authSetting['scope.userInfo'] === true) { // 成功授权
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              var userInfo = res.userInfo
+              that.setData({
+                wechatNickname: userInfo.nickName
+              })
+            },
+            fail: res => {
+              wx.getUserInfo({
+                success: res => {
+                  var userInfo = res.userInfo
+                  that.setData({
+                    wechatNickname: userInfo.nickName
+                  })
+                },
+                fail: res => {
+                  wx.openSetting({
+                    success: res => {
+                      getUserInfoData();
+                    },
+                    fail: res => {
+                      this.showTopTips("请允许微信授权，我们只需要您的昵称，并通过邮件告知您绑定的账号信息");
+                    }
+                  })
+                }
+              })
+            }
+          })
+        } else if (res.authSetting['scope.userInfo'] === false) { // 授权弹窗被拒绝
+          wx.openSetting({
+            success: res => {
+              getUserInfoData();
+            },
+            fail: res => {
+              this.showTopTips("请允许微信授权，我们只需要您的昵称，并通过邮件告知您绑定的账号信息");
+            }
+          })
+        } else { // 没有弹出过授权弹窗
+          wx.getUserInfo({
+            success: res => {
+              var userInfo = res.userInfo
+              that.setData({
+                wechatNickname: userInfo.nickName
+              })
+            },
+            fail: res => {
+              wx.openSetting({
+                success: res => {
+                  getUserInfoData();
+                },
+                fail: res => {
+                  this.showTopTips("请允许微信授权，我们只需要您的昵称，并通过邮件告知您绑定的账号信息");
+                }
+              })
+            }
+          })
+        }
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -192,15 +253,24 @@ Page({
       }
     })
   },
+  bindGetUserInfo: function (e) {
+    if (undefined === e || undefined === e.detail || undefined === e.detail.userInfo) {
+      this.showTopTips("请允许微信授权，我们只需要您的昵称，并通过邮件告知您绑定的账号信息");
+      return;
+    }
+    this.setData({
+      wechatNickname: e.detail.userInfo.nickName
+    })
+  },
   showTopTips: function (error) {
     var that = this;
     this.setData({
       showTopTips: true,
-      errorString: error
+      errorString: error,
     });
     setTimeout(function () {
       that.setData({
-        showTopTips: false
+        showTopTips: false,
       });
     }, 3000);
   }

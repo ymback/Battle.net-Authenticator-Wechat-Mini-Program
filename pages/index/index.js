@@ -9,6 +9,7 @@ var onHide = false;
 var screenWidth = 0;
 Page({
   data: {
+    currentYear: new Date().getFullYear(),
     progress: 0,
     authCode: "正在加载",
     errorString: '',

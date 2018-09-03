@@ -11,7 +11,7 @@
         <view class="{{addAuthViewClass}}">
           <button class="weui-btn" type="primary" bindtap="doLogin" disabled="{{disabled}}" loading="{{loading}}">{{reLoginButtonString}}</button>
         </view>
-        <view class="weui-footer__text">Copyright © 2013-2017 竹井詩織里</view>
+    <view class="weui-footer__text">Copyright © 2013-{{currentYear}} 竹井詩織里</view>
       </view>
     </view>
   </view>

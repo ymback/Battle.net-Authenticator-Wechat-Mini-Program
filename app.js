@@ -5,7 +5,9 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    this.getUserInfo
+    if (!wx.canIUse("button.open-type.getUserInfo")) {
+      this.getUserInfo
+    }
   },
   getUserInfo: function (cb) {
     var that = this
@@ -29,7 +31,7 @@ App({
     intentAuthInfo: null,
     userInfo: null,
     needReloadAuthList: false,
-    deletedAuthNeedRefreshIndex:false
+    deletedAuthNeedRefreshIndex: false
   },
   apiUrl: {
     baseUrl: "https://myauth.us",
@@ -47,6 +49,6 @@ App({
     unBind: "https://myauth.us/api/wechat/unBind",
     authList: "https://myauth.us/api/wechat/authList",
     authInfo: "https://myauth.us/api/wechat/authInfo",
-    authDelete:"https://myauth.us/api/wechat/authDelete",
+    authDelete: "https://myauth.us/api/wechat/authDelete",
   }
 })

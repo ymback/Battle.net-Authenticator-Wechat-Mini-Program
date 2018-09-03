@@ -21,6 +21,7 @@ Page({
     userRegisterTime: "",
     userLastLoginTime: "",
     userLastLoginIp: "",
+    currentYear: new Date().getFullYear(),
   },
   /**
    * 生命周期函数--监听页面加载
@@ -152,6 +153,9 @@ Page({
                 break;
               case 1:
                 right = "共享账号";
+                break;
+              case 9:
+                right = "商务合作账号";
                 break;
               case 999:
                 right = "封禁账号";

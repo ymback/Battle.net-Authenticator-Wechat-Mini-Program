@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentYear: new Date().getFullYear(),
     errorString: '',
     showTopTips: false,
     addAuthViewClass: "weui-btn-area loginPageReLoginButtonViewClass hidden",
