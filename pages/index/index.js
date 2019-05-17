@@ -319,7 +319,8 @@ Page({
     wx.request({
       url: url,
       data: {
-        token_wechat_session_v1: token
+        token_wechat_session_v1: token,
+        authId: that.data.intentAuthId,
       },
       header: {},
       method: 'post',
