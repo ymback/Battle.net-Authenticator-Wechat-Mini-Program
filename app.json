@@ -41,5 +41,6 @@
         "text": "账号信息"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

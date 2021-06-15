@@ -17,7 +17,7 @@ Page({
     plain: false,
     loading: false,
     token: '',
-    regionPickerArray: ["CN", "US", "EU"],
+    regionPickerArray: ["CN", "US", "EU", "KR"],
     authCodeFocusArray: [
       { focus: false },
       { focus: false },

@@ -17,7 +17,7 @@ Page({
     plain: false,
     loading: false,
     token: '',
-    regionPickerArray: ["CN（国服）", "US（美服、台服、韩服）", "EU（欧服）"],
+    regionPickerArray: ["CN（国服）", "US（美服、台服）", "EU（欧服）", "KR（韩服）"],
     authPicArray: [
       { id: 1, checked: 'true' },
       { id: 2 },
